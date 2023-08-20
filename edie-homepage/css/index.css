@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@800&family=Montserrat:wght@700&family=Poppins:wght@300;400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.main__heading {
+  @apply font-medium text-gray1 md:text-4xl xl:text-5xl text-3xl xl:ml-56 md:ml-12 ml-8;
+}
+
+.section__heading {
+  @apply font-medium text-gray1 sm:text-4xl text-3xl xl:w-4/12 mb-14;
+}
+
+.hamburger {
+  cursor: pointer;
+  appearance: none;
+  border: none;
+  background: none;
+}
+
+.bar {
+  width: 1.75rem;
+  height: 3px;
+  border-radius: 2px;
+  background-color: black;
+  margin: 5px;
+  display: block;
+  transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+
+.menu {
+  @apply sm:flex lg:gap-12 md:gap-7 sm:gap-6 gap-2 sm:flex-row hidden;
+  animation: slideInUp 0.8s;
+}
+
+.menu.active {
+  @apply flex sm:flex-row flex-col sm:items-start items-center sm:mt-0 mt-2;
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, -30%, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hamburger.active .bar:nth-child(2) {
+  @apply hidden;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+.cards {
+  @apply flex lg:flex-row flex-col lg:gap-9 md:gap-12 gap-20 md:mx-8 lg:mx-0;
+}
+
+.card {
+  @apply flex flex-col p-8 rounded-2xl;
+}
+
+.card:hover {
+  box-shadow: 0 10px 30px 0 #3333331a;
+}
+
+.card:hover .card__button {
+  @apply bg-blue text-white;
+}
+
+.card__heading {
+  @apply font-bold text-2xl text-gray1 mb-5;
+}
+
+.card__text {
+  @apply font-normal text-base text-gray2 mb-7;
+}
+
+.card__button {
+  @apply bg-gray5 text-gray3 font-medium text-base rounded-xl self-start px-3 py-2;
+}
+
+.gallery {
+  @apply grid lg:grid-cols-2 lg:grid-rows-2 md:grid-rows-4 md:justify-center lg:justify-start xl:gap-0 lg:gap-x-5 md:gap-y-8 gap-y-12 lg:gap-y-0 sm:mx-16 xl:mx-0;
+}
+
+.gallery__item:nth-child(1) {
+  @apply xl:mt-40 lg:mt-32;
+}
+
+.gallery__item:nth-child(3) {
+  @apply xl:mt-40 lg:mt-32;
+}
+
+.gallery__item img {
+  @apply lg:rounded-2xl rounded-3xl max-w-full h-auto;
+}
+
+.gallery__title {
+  @apply text-sm font-light text-gray3 xl:mt-4 md:mt-3 mt-4 lg:mb-2;
+}
+
+.gallery__subtitle {
+  @apply font-medium sm:text-2xl text-xl text-gray1;
+}
+
+.team-gallery {
+  @apply grid lg:gap-5 md:gap-4 gap-3 mt-10 lg:mx-0 md:mx-16 lg:mt-0;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+}
+
+.team-gallery img {
+  @apply lg:rounded-2xl rounded-3xl;
+}
+
+img[alt="Person 3"] {
+  grid-row: 2/-1;
+  transform: translateY(-50%);
+}
+
+img[alt="Person 1"] {
+  grid-column: 2/-1;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 1, "wght" 800, "GRAD" 0, "opsz" 48;
+  @apply text-white;
+}
+
+.card:nth-child(1) span {
+  @apply bg-blue px-4 py-3 text-3xl rounded-2xl mb-9;
+}
+
+.card:nth-child(2) span {
+  @apply bg-green px-4 py-3 text-3xl rounded-2xl mb-9;
+}
+
+.card:nth-child(3) span {
+  @apply bg-red px-4 py-3 text-3xl rounded-2xl mb-9;
+}
+
+.section__quote {
+  @apply font-medium sm:text-4xl text-2xl text-gray1 xl:leading-snug lg:w-9/12 mb-12;
+}
+
+.btn-submit {
+  @apply font-medium text-gray6 bg-blue text-base absolute top-1 bottom-1 px-6 py-3 rounded-lg flex justify-center items-center right-1;
+}
+
+.input-email {
+  @apply rounded-xl bg-gray6 px-5 py-3 text-gray4 w-full;
+}
