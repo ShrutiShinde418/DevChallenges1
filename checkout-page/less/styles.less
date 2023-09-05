@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@gray1: #4e5150;
+@gray2: #333333;
+@gray3: #4f4f4f;
+@gray4: #828282;
+@gray5: #e0e0e0;
+@gray6: #bdbdbd;
+@orange: #f2994a;
+@card-bg: #f2f2f2;
+@white: #ffffff;
+@font-family: "Montserrat";
+@border-radius1: 12px;
+@border-radius2: 9px;
+@border1: 1px solid @gray4;
+
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: @font-family;
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  main {
+    max-width: 80%;
+    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 7rem;
+    .form-container {
+      grid-column: 1/2;
+    }
+    h1 {
+      .text-1(36px; @gray1);
+      margin: 1rem 0 1rem;
+    }
+    h2,
+    h3 {
+      .text-1(18px; @gray2);
+      margin: 2rem 0 0.5rem;
+    }
+    form {
+      &:extend(.flex-column);
+      label {
+        .text-1(12px; @gray3);
+      }
+      input {
+        color: @gray4;
+        font-family: inherit;
+        font-weight: 600;
+        // padding: 0.75rem 0.75rem 0.75rem 3.5rem;
+        padding: 1.15em 1.15em 1.15em 3.6em;
+        border-radius: @border-radius2;
+        border: @border1;
+      }
+      span {
+        position: absolute;
+        top: 1.4em;
+        left: 0.5em;
+        right: 0;
+      }
+      button {
+        .text-1(16px; @white);
+        border-radius: @border-radius1;
+        background-color: @orange;
+        padding: 1rem 2.5rem;
+        border: none;
+        font-family: inherit;
+        align-self: flex-end;
+        margin-top: 0.75rem;
+        cursor: pointer;
+      }
+    }
+    .grid-1 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    .flex-row-1 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        border: 1px solid @gray4;
+        accent-color: @orange;
+      }
+    }
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    background-color: @card-bg;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 5%;
+    width: 65%;
+    height: fit-content;
+    .item {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      img {
+        border-radius: 12px;
+        width: 40%;
+      }
+      .item__details {
+        display: flex;
+        flex-direction: column;
+        .item__name {
+          .text-1(16px; @gray1);
+        }
+        .item__price {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          margin-top: 0.5em;
+          .item__cost {
+            .text-1(16px; @orange);
+          }
+          .item__old {
+            .text-1(12px; @gray1);
+            text-decoration: line-through;
+          }
+        }
+      }
+      .number {
+        display: flex;
+        align-self: flex-end;
+        border: 1px solid @gray4;
+        border-radius: @border-radius1;
+        padding: 1em;
+      }
+    }
+    .card__footer {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4em;
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+      }
+      div:first-of-type {
+        border-top: 1px solid @gray6;
+        border-bottom: 1px solid @gray6;
+      }
+      .footer__title {
+        .text-1(18px, @gray2);
+      }
+      .footer__cost {
+        .text-1(14px, @gray2);
+      }
+    }
+  }
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.675rem;
+  position: relative;
+}
+
+.text-1(@font-size; @text-color) {
+  font-weight: 600;
+  color: @text-color;
+  font-size: @font-size;
+}
+
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+  color: @gray4;
+}
