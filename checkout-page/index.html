@@ -106,9 +106,13 @@
               <p class="item__old">$94.99</p>
             </div>
             <div class="number">
-              <span class="material-symbols-rounded"> remove </span>
+              <button class="material-symbols-rounded minus" type="button">
+                remove
+              </button>
               <input type="text" name="count" id="count1" value="1" />
-              <span class="material-symbols-rounded"> add </span>
+              <button class="material-symbols-rounded plus" type="button">
+                add
+              </button>
             </div>
           </div>
         </div>
@@ -121,9 +125,13 @@
               <p class="item__old">$124.99</p>
             </div>
             <div class="number">
-              <span class="material-symbols-rounded"> remove </span>
+              <button class="material-symbols-rounded minus" type="button">
+                remove
+              </button>
               <input type="text" name="count" id="count2" value="1" />
-              <span class="material-symbols-rounded"> add </span>
+              <button class="material-symbols-rounded plus" type="button">
+                add
+              </button>
             </div>
           </div>
         </div>
@@ -139,5 +147,28 @@
         </div>
       </section>
     </main>
+    <script>
+      const plus = document.querySelectorAll(".plus");
+      const minus = document.querySelectorAll(".minus");
+      const input = document.querySelectorAll(".number input");
+      console.log(plus);
+      console.log(minus);
+      console.log(input[0].value);
+      console.log(input[1].value);
+      for (let i = 0; i < plus.length; i++) {
+        console.log(plus[i]);
+        plus[i].addEventListener("click", () => {
+          input[i].value = parseInt(input[i].value) + 1;
+        });
+        minus[i].addEventListener("click", () => {
+          input[i].value = input[i].value <= 1 ? 1 : input[i].value - 1;
+        });
+      }
+      inputs.forEach((input) => {
+        input.addEventListener("change", (e) => {
+          console.log(e.target.value);
+        });
+      });
+    </script>
   </body>
 </html>
