@@ -12,6 +12,7 @@
 @border-radius1: 12px;
 @border-radius2: 9px;
 @border1: 1px solid @gray4;
+@min300:~ "(min-width:300px)";
 @min576:~ "(min-width:576px)";
 @min768:~ "(min-width:768px)";
 @min992:~ "(min-width:992px)";
@@ -21,37 +22,54 @@
 body {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: @font-family;
   p {
     margin: 0;
     padding: 0;
   }
   main {
-    max-width: 80%;
-    margin: 3rem auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column-reverse;
     gap: 0 7em;
+    padding: 0.5em;
     grid-template-rows: 5rem 1fr;
-    @media @min1200 {
-      max-width: 90%;
+    @media @min576 {
+      padding: 1em;
+    }
+    @media @min992 {
+      margin: 3rem auto;
+      max-width: 95%;
+      gap: 0 4em;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
     @media @min1400 {
       max-width: 80%;
+      gap: 0 7em;
     }
     .form-container {
       grid-column: 1/2;
     }
     h1 {
-      .text-1(36px; @gray1);
-      margin: 1rem 0 1rem;
+      .text-1(30px; @gray1);
+      margin: 1rem 0 0;
+      order: 1;
+      @media @min576 {
+        .text-1(36px; @gray1);
+      }
+      @media @min992 {
+        order: 0;
+        margin: 1rem 0 1rem;
+      }
     }
     h2,
     h3 {
       .text-1(18px; @gray2);
-      margin: 2rem 0 0.5rem;
+      margin: 2.5em 0 0.5em;
+      @media @min992 {
+        margin: 1.5em 0 0.5em;
+      }
     }
     form {
       &:extend(.flex-column);
@@ -63,12 +81,12 @@ body {
         font-family: inherit;
         font-weight: 600;
         padding: 1.15em 1.15em 1.15em 3.6em;
-        border-radius: @border-radius2;
+        border-radius: @border-radius1;
         border: @border1;
       }
       span {
         position: absolute;
-        top: 1.4em;
+        top: 1.5em;
         left: 0.5em;
         right: 0;
       }
@@ -86,8 +104,11 @@ body {
     }
     .grid-1 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
+      gap: 0.4rem;
+      @media @min768 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
     }
     .flex-row-1 {
       display: flex;
@@ -106,24 +127,48 @@ body {
     display: flex;
     flex-direction: column;
     background-color: @card-bg;
-    padding: 2em 2em 1em;
+    padding: 1.25em 1.25em 1em;
     border-radius: 12px;
     margin-top: 5%;
-    width: 70%;
+    width: auto;
     height: fit-content;
+    @media @min576 {
+      padding: 2em 2em 1em;
+    }
+    @media @min992 {
+      width: 85%;
+    }
+    @media @min1200 {
+      width: 70%;
+    }
     .item {
       display: flex;
       gap: 1.5rem;
-      margin-bottom: 2rem;
+      margin-bottom: 3em;
+      @media min992 {
+        margin-bottom: 2em;
+      }
       img {
         border-radius: 12px;
         width: 40%;
+        @media @min768 {
+          width: 30%;
+        }
+        @media @min992 {
+          width: 40%;
+        }
       }
       .item__details {
         display: flex;
         flex-direction: column;
         .item__name {
-          .text-1(16px; @gray1);
+          .text-1(14px; @gray1);
+          @media @min576 {
+            .text-1(24px; @gray1);
+          }
+          @media @min992 {
+            .text-1(16px; @gray1);
+          }
         }
         .item__price {
           display: flex;
@@ -131,11 +176,17 @@ body {
           gap: 1rem;
           margin-top: 0.5em;
           .item__cost {
-            .text-1(16px; @orange);
+            .text-1(14px; @orange);
+            @media @min300 {
+              .text-1(16px; @orange);
+            }
           }
           .item__old {
-            .text-1(12px; @gray1);
+            .text-1(10px; @gray1);
             text-decoration: line-through;
+            @media @min300 {
+              .text-1(12px; @gray1);
+            }
           }
         }
       }
@@ -144,9 +195,19 @@ body {
         justify-content: space-between;
         border: 1px solid @gray4;
         border-radius: @border-radius1;
-        width: 60%;
-        padding: 0.85em;
+        width: 80%;
+        padding: 0.65em;
         margin-top: auto;
+        @media @min300 {
+          padding: 0.65em;
+        }
+        @media @min576 {
+          width: 50%;
+          padding: 0.85em;
+        }
+        @media @min992 {
+          width: 60%;
+        }
         input {
           border: none;
           background-color: @card-bg;
@@ -181,9 +242,21 @@ body {
       }
       .footer__title {
         .text-1(18px, @gray2);
+        @media @min576 {
+          .text-1(20px; @gray1);
+        }
+        @media @min992 {
+          .text-1(18px; @gray1);
+        }
       }
       .footer__cost {
         .text-1(14px, @gray2);
+        @media @min576 {
+          .text-1(18px; @gray1);
+        }
+        @media @min992 {
+          .text-1(14px; @gray1);
+        }
       }
     }
   }
@@ -192,9 +265,12 @@ body {
 .flex-column {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 0.675rem;
+  gap: 0.55em;
+  margin-bottom: 0.675em;
   position: relative;
+  @media @min992 {
+    gap: 0.4em;
+  }
 }
 
 .text-1(@font-size; @text-color) {

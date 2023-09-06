@@ -151,10 +151,6 @@
       const plus = document.querySelectorAll(".plus");
       const minus = document.querySelectorAll(".minus");
       const input = document.querySelectorAll(".number input");
-      console.log(plus);
-      console.log(minus);
-      console.log(input[0].value);
-      console.log(input[1].value);
       for (let i = 0; i < plus.length; i++) {
         console.log(plus[i]);
         plus[i].addEventListener("click", () => {
@@ -164,11 +160,6 @@
           input[i].value = input[i].value <= 1 ? 1 : input[i].value - 1;
         });
       }
-      inputs.forEach((input) => {
-        input.addEventListener("change", (e) => {
-          console.log(e.target.value);
-        });
-      });
     </script>
   </body>
 </html>
