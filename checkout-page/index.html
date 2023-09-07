@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout Page</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/devchallenges.png"
+    />
     <link rel="stylesheet" href="./css/styles.min.css" />
     <link
       rel="stylesheet"
@@ -102,6 +108,8 @@
             <input type="checkbox" name="save" id="save" />
             <label for="save">Save this information for next time</label>
           </div>
+          <div id="error"></div>
+          <div id="success"></div>
           <button type="submit">Continue</button>
         </form>
       </div>
@@ -163,6 +171,15 @@
       const total = document.getElementById("total");
       const form1 = document.getElementById("form-1");
       const form2 = document.getElementById("form-2");
+      const email = document.getElementById("email");
+      const phone = document.getElementById("phone");
+      const name = document.getElementById("name");
+      const address = document.getElementById("address");
+      const city = document.getElementById("city");
+      const country = document.getElementById("country");
+      const postal = document.getElementById("postal");
+      const error = document.getElementById("error");
+      const success = document.getElementById("success");
       for (let i = 0; i < plus.length; i++) {
         plus[i].addEventListener("click", () => {
           input[i].setAttribute("value", parseInt(input[i].value) + 1);
@@ -174,10 +191,49 @@
           );
         });
       }
-      input.forEach((item) => {
-        item.addEventListener("change", () => {
-          console.log("value changed");
-        });
+      const isValidPhone = (phone) => {
+        const re =
+          /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+        return re.test(String(phone));
+      };
+
+      const isValidEmail = (email) => {
+        const re =
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email));
+      };
+      form1.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let messages = [];
+        if (!isValidEmail(email.value)) {
+          messages.push("Please enter a valid email");
+        }
+        if (!isValidPhone(phone.value)) {
+          messages.push("Please enter a valid phone number");
+        }
+        if (name.value === "" || name.value == null) {
+          messages.push("Please enter your name");
+        }
+        if (address.value === "") {
+          messages.push("Please enter your address");
+        }
+        if (city.value === "") {
+          messages.push("Please enter your city");
+        }
+        if (country.value === "") {
+          messages.push("Please select your country");
+        }
+        if (postal.value === "") {
+          messages.push("Please enter your postal code");
+        }
+        console.log(messages);
+        if (messages.length > 0) {
+          e.preventDefault();
+          error.innerText = messages.join(", ");
+        } else {
+          error.innerText = "";
+          success.innerText = "Form submitted successfully.";
+        }
       });
       form2.addEventListener("submit", (e) => {
         event.preventDefault();
