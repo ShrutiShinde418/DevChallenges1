@@ -14,7 +14,7 @@
     <main>
       <h1>Checkout</h1>
       <div class="form-container">
-        <form>
+        <form id="form-1">
           <h2>Contact information</h2>
           <div class="flex-column">
             <label for="email">E-mail</label>
@@ -70,12 +70,21 @@
           <div class="grid-1">
             <div class="flex-column">
               <label for="country">Country</label>
-              <input
-                type="text"
-                name="country"
-                id="country"
-                placeholder="Your country.."
-              />
+              <select name="country" id="country">
+                <option value="India">India</option>
+                <option value="United States">United States</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Sri Lanka">Sri Lanka</option>
+                <option value="Canada">Canada</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="Australia">Australia</option>
+                <option value="South Africa">South Africa</option>
+                <option value="Egypt">Egypt</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Bhutan">Bhutan</option>
+              </select>
               <span class="material-symbols-rounded"> public </span>
             </div>
             <div class="flex-column">
@@ -96,7 +105,7 @@
           <button type="submit">Continue</button>
         </form>
       </div>
-      <section>
+      <form id="form-2">
         <div class="item">
           <img src="./assets/photo1.png" alt="Bag" />
           <div class="item__details">
@@ -106,11 +115,11 @@
               <p class="item__old">$94.99</p>
             </div>
             <div class="number">
-              <button class="material-symbols-rounded minus" type="button">
+              <button class="material-symbols-rounded minus" type="submit">
                 remove
               </button>
               <input type="text" name="count" id="count1" value="1" />
-              <button class="material-symbols-rounded plus" type="button">
+              <button class="material-symbols-rounded plus" type="submit">
                 add
               </button>
             </div>
@@ -125,11 +134,11 @@
               <p class="item__old">$124.99</p>
             </div>
             <div class="number">
-              <button class="material-symbols-rounded minus" type="button">
+              <button class="material-symbols-rounded minus" type="submit">
                 remove
               </button>
               <input type="text" name="count" id="count2" value="1" />
-              <button class="material-symbols-rounded plus" type="button">
+              <button class="material-symbols-rounded plus" type="submit">
                 add
               </button>
             </div>
@@ -142,24 +151,43 @@
           </div>
           <div>
             <p class="footer__title">Total</p>
-            <p class="footer__cost">$148.98</p>
+            <p class="footer__cost" id="total">$148.98</p>
           </div>
         </div>
-      </section>
+      </form>
     </main>
     <script>
       const plus = document.querySelectorAll(".plus");
       const minus = document.querySelectorAll(".minus");
       const input = document.querySelectorAll(".number input");
+      const total = document.getElementById("total");
+      const form1 = document.getElementById("form-1");
+      const form2 = document.getElementById("form-2");
       for (let i = 0; i < plus.length; i++) {
-        console.log(plus[i]);
         plus[i].addEventListener("click", () => {
-          input[i].value = parseInt(input[i].value) + 1;
+          input[i].setAttribute("value", parseInt(input[i].value) + 1);
         });
-        minus[i].addEventListener("click", () => {
-          input[i].value = input[i].value <= 1 ? 1 : input[i].value - 1;
+        minus[i].addEventListener("click", (e) => {
+          input[i].setAttribute(
+            "value",
+            input[i].value <= 1 ? 1 : input[i].value - 1
+          );
         });
       }
+      input.forEach((item) => {
+        item.addEventListener("change", () => {
+          console.log("value changed");
+        });
+      });
+      form2.addEventListener("submit", (e) => {
+        event.preventDefault();
+        let totalCost = (
+          parseInt(input[0].value) * 54.99 +
+          parseInt(input[1].value) * 74.99 +
+          19
+        ).toFixed(2);
+        total.innerText = "$" + totalCost;
+      });
     </script>
   </body>
 </html>
